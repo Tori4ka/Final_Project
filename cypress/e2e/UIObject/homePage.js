@@ -1,8 +1,10 @@
+import AboutPage from "./aboutPage";
+
 const activeCountry = '#id-890298b8-f4a7-3f75-8a76-be36dc4490fd > div.tabs-23__item.js-tabs-item.active > div > div > div.locations-viewer-23__country-list.active > div.locations-viewer-23__country-details.active > div.locations-viewer-23__locations-container--responsive > div > div.owl-stage-outer > div > div:nth-child(3) > div > h5';
 const themeSwitcher = ':nth-child(3) > .theme-switcher';
 const header = '#wrapper > div.header-container.iparsys.parsys > div.header.section > header > div > div';
 const policiesAcceptButton = '#onetrust-accept-btn-handler';
-const policiesList = '.policies > div > ul.ul';
+const policiesList = '.policies > div > ul.ul'; //todo: спробуй .policies li
 const policyLeftLink = '.policies > div > ul.ul.policies-left > li:nth-child(1) > a';
 const policyRightLink = '.policies > div > ul.ul.policies-right > li:nth-child(1) > a';
 const policyLeftFirstItem = '.policies > div > ul.ul.policies-left > li:nth-child(2) > a';
@@ -95,7 +97,7 @@ Check have the correct title
   }
 
   clicksSearchButton() {
-    this.searchButton.click();
+    this.searchButton.click(); //todo: заважкий локатор, спробуй .header-search__panel button
   }
 
   get searchButton() {
@@ -105,9 +107,16 @@ Check have the correct title
   get searchInput() {
     return cy.get(searchInput);
   }
+  //todo:
+    typeInSearchField(text) {
+      this.searchInput
+          .type(text);
+      return this;
+    }
 
   clickSearchIcon() {
     this.searchIcon.click();
+    return this;
   }
 
   get searchIcon() {
@@ -144,7 +153,7 @@ Check have the correct title
   }
 
   get policiesAcceptButton() {
-    return cy.get(policiesAcceptButton);
+    return cy.get(policiesAcceptButton); //TODO: looks a bit weird
   }
   ///Check that allows changing language to UA
 
@@ -154,6 +163,10 @@ Check have the correct title
     });
   }
 
+    clickAboutButton() {
+this.aboutButton.click();
+return new AboutPage();
+    }
   get errorVerify() {
     return cy.on('uncaught:exception', (e) => {
       if (e.message.includes('Things went bad')) {
@@ -164,6 +177,7 @@ Check have the correct title
 
   clickUaLanguageOption() {
     this.uaLanguageOption.click();
+    // cy.get(".location-selector__link").contains("Україна").click()
   }
 
   get uaLanguageOption() {

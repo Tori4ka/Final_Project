@@ -1,0 +1,26 @@
+################ Temporary files ################
+reports
+cypress/fixtures/localstorage
+cypress/downloads
+cypress/videos
+cypress/screenshots
+mochawesome.html
+
+#################################################
+
+############### Cypress base file ###############
+cypress/fixtures/example.json
+#################################################
+
+###################### IDE ######################
+.vs
+.vscode
+.idea
+.DS_Store
+#################################################
+
+##################### System ####################
+node_modules
+package-lock.json
+yarn.lock
+#################################################
