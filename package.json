@@ -12,7 +12,12 @@
   "dependencies": {
     "axios": "^1.6.5",
     "cypress": "^13.6.4",
+    "cypress-downloadfile": "^1.2.3",
     "faker": "^5.5.3",
     "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "chai": "^5.1.0",
+    "mocha": "^10.3.0"
   }
 }

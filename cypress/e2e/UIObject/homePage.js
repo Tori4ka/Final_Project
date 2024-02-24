@@ -1,42 +1,14 @@
 import AboutPage from "./aboutPage";
 
-const activeCountry = '#id-890298b8-f4a7-3f75-8a76-be36dc4490fd > div.tabs-23__item.js-tabs-item.active > div > div > div.locations-viewer-23__country-list.active > div.locations-viewer-23__country-details.active > div.locations-viewer-23__locations-container--responsive > div > div.owl-stage-outer > div > div:nth-child(3) > div > h5';
-const themeSwitcher = ':nth-child(3) > .theme-switcher';
-const header = '#wrapper > div.header-container.iparsys.parsys > div.header.section > header > div > div';
-const policiesAcceptButton = '#onetrust-accept-btn-handler';
-const policiesList = '.policies > div > ul.ul'; //todo: спробуй .policies li
-const policyLeftLink = '.policies > div > ul.ul.policies-left > li:nth-child(1) > a';
-const policyRightLink = '.policies > div > ul.ul.policies-right > li:nth-child(1) > a';
-const policyLeftFirstItem = '.policies > div > ul.ul.policies-left > li:nth-child(2) > a';
-const policyLeftSecondItem = '.policies > div > ul.ul.policies-left > li:nth-child(3) > a';
-const policyRightFirstItem = '.policies > div > ul.ul.policies-right > li:nth-child(2) > a';
-const policyRightSecondItem = '.policies > div > ul.ul.policies-right > li:nth-child(3) > a';
-const searchIcon = '#wrapper > div.header-container.iparsys.parsys > div.header.section > header > div > div > ul > li:nth-child(3) > div > button > span.search-icon.dark-iconheader-search__search-icon';
-const searchInput = '#new_form_search';
-const searchButton = '#wrapper > div.header-container.iparsys.parsys > div.header.section > header > div > div > ul > li:nth-child(3) > div > div > form > div.search-results__action-section > button';
-const searchResultsCounter = '.search-results__counter';
-const locationList = '.section--padding-no';
-const regionTab = (index) => `#id-890298b8-f4a7-3f75-8a76-be36dc4490fd > div.js-tabs-controls > div > div > div.tabs-23__title.js-tabs-title:nth-child(${index}) > a`;
-const activeLocation = '#id-890298b8-f4a7-3f75-8a76-be36dc4490fd > div.tabs-23__item.js-tabs-item.active > div > div > div.locations-viewer-23__carousel.owl-loaded.owl-drag > div.owl-stage-outer > div > div:nth-child(6) > div > div > img';
-const locationImage = '#id-890298b8-f4a7-3f75-8a76-be36dc4490fd > div.tabs-23__item.js-tabs-item.active > div > div > div.locations-viewer-23__carousel.owl-loaded.owl-drag > div.owl-stage-outer > div > div:nth-child(6) > div > div > img';
-const languageButton = '.location-selector__button > .location-selector__button-language';
-const uaLanguageOption = ':nth-child(6) > .location-selector__link';
-
-
 
 class HomePage {
   open() {
     cy.visit('https://www.epam.com/');
   }
-/*
-Check have the correct title
-  get checkTitle() {
-    return cy.title();
-  }
-*/
+
 ///Check the ability to switch between mode
   get header() {
-    return cy.get(header);
+    return cy.get('#wrapper > div.header-container.iparsys.parsys > div.header.section > header > div > div');
   }
 
   clickSwitcher() {
@@ -44,25 +16,10 @@ Check have the correct title
   }
 
   get switcher() {
-    return cy.get(themeSwitcher);
+    return cy.get('div.header.section > header > div > div > section > div');
   }
 
 ///Check the policies list
- get webAccessibility() {
-    return cy.get(policyRightSecondItem);
-  }
-
- get applicantPrivacyNotice() {
-    return cy.get(policyRightFirstItem);
-  }
-
-  get privacyPolicy() {
-    return cy.get(policyLeftSecondItem);
-  }
-
-  get openSource() {
-    return cy.get(policyLeftFirstItem);
-  }
 
   clickpolicyInvestors() {
     this.investors.click();
@@ -72,16 +29,8 @@ Check have the correct title
     this.cookiesPolicy.click();
   }
 
-  get cookiesPolicy() {
-    return cy.get(policyRightLink);
-  }
-
-  get investors() {
-    return cy.get(policyLeftLink);
-  }
-
   get policiesList() {
-    return cy.get(policiesList);
+    return cy.get('.policies li');
   }
 
   clickpoliciesAcceptButton() {
@@ -89,28 +38,29 @@ Check have the correct title
   }
 
   get policiesAcceptButton() {
-    return cy.get(policiesAcceptButton);
+    return cy.get('#onetrust-accept-btn-handler');
   }
   ///Check the search function
   get searchResults() {
-    return cy.get(searchResultsCounter);
+    return cy.get('.search-results__item');
   }
 
-  clicksSearchButton() {
-    this.searchButton.click(); //todo: заважкий локатор, спробуй .header-search__panel button
+  clicksfindButton() {
+    this.findButton.click();
+    return this;
   }
 
-  get searchButton() {
-    return cy.get(searchButton);
+  get findButton() {
+    return cy.get('.header-search__panel button');
   }
 
   get searchInput() {
-    return cy.get(searchInput);
+    return cy.get('#new_form_search');
   }
-  //todo:
+
     typeInSearchField(text) {
       this.searchInput
-          .type(text);
+          .type('AI');
       return this;
     }
 
@@ -120,32 +70,13 @@ Check have the correct title
   }
 
   get searchIcon() {
-    return cy.get(searchIcon);
+    return cy.get('span.search-icon');
   }
 
 ///Check that allow to switch location list by region
-  get activeCountry() {
-    return cy.get(activeCountry);
-  }
-
-  clicklocationImage() {
-    this.locationImage.click();
-  }
-
-  get locationImage() {
-    return cy.get(locationImage);
-  }
-
-  get activeLocation() {
-    return cy.get(activeLocation);
-  }
-
-  regionTab(index) {
-    return cy.get(regionTab(index));
-  }
 
   get locationList() {
-    return cy.get(locationList);
+    return cy.get('div.js-tabs-links-list a');
   }
 
   clickPoliciesAcceptButton() {
@@ -153,7 +84,7 @@ Check have the correct title
   }
 
   get policiesAcceptButton() {
-    return cy.get(policiesAcceptButton); //TODO: looks a bit weird
+    return cy.get('#onetrust-accept-btn-handler');
   }
   ///Check that allows changing language to UA
 
@@ -164,8 +95,13 @@ Check have the correct title
   }
 
     clickAboutButton() {
-this.aboutButton.click();
-return new AboutPage();
+      this.aboutButton.click();
+      return new AboutPage();
+    }
+
+    get aboutButton(){
+     // return cy.get(aboutButton);
+      return cy.get('#wrapper .top-navigation__item span.top-navigation__item-text:contains("About") a');
     }
   get errorVerify() {
     return cy.on('uncaught:exception', (e) => {
@@ -176,21 +112,33 @@ return new AboutPage();
   }
 
   clickUaLanguageOption() {
-    this.uaLanguageOption.click();
-    // cy.get(".location-selector__link").contains("Україна").click()
+    this.LanguageList.click();
+    this.clickUaLanguage();
+    return this;
   }
 
-  get uaLanguageOption() {
-    return cy.get(uaLanguageOption);
+  get LanguageList() {
+    return cy.get('nav.location-selector__panel[style=\'display: block;\']');
+  }
+
+  get uaLanguageLink() {
+    return cy.get(".location-selector__link").contains("Україна");
+  }
+  
+  clickUaLanguage() {
+    this.uaLanguageLink.click();
   }
 
   clickLanguageButton() {
     this.languageButton.click();
+    return this;
   }
 
   get languageButton() {
-    return cy.get(languageButton);
+    return cy.get('.location-selector__button > .location-selector__button-language');
   }
+
+
 }
 
 export default HomePage;
