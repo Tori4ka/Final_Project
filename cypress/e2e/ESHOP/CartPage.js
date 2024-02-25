@@ -11,34 +11,59 @@ class CartPage {
     return cy.get('.shopping-cart-page');
   }
 
-  get verifycheckOot(){
+  get verifycheckOut(){
     return cy.get('body > div.master-wrapper-page > div.master-wrapper-content > div.master-wrapper-main > div > div');
   }
-  termsOfService(){
-    cy.get('#termsofservice').click();
+  termsOfServiceClick(){
+    this.termsOfService.click();
+    return this;
   }
-  productOpen(){
-    cy.get('.product-grid > div:nth-child(1) .buttons > input').click();
+
+  get termsOfService(){
+    return cy.get('#termsofservice');
   }
-  clickTopOnProduct(){
-    cy.get('#topcartlink > a').click();
+
+  addToCart(){
+    this.addToCardButton.click();
+    return this;
   }
+  get addToCardButton(){
+    return cy.get('.product-grid > div:nth-child(1) .buttons > input');
+  }
+  shoppingCartButton(){
+    this.cartButton.click();
+    return this;
+  }
+  get cartButton(){
+    return cy.get('#topcartlink > a');
+  }
+
+
   clickRemove(){
-    cy.get('.remove-from-cart > input[type=checkbox]').click();
+    this.removeButton.click();
+    return this;
   }
+  get removeButton(){
+    return cy.get('.remove-from-cart > input[type=checkbox]');
+  }
+
   updateCart(){
-    cy.get('.update-cart-button').click();
+    this.updateCartButton.click();
+    return this;
+  }
+  get updateCartButton(){
+    return cy.get('.update-cart-button') ;
   }
 
-  checkOutButtonclick(){
-    cy.get('body > div.master-wrapper-page > div.master-wrapper-content > div.master-wrapper-main > div > div > div.page-body > div > form > div.cart-footer > div.totals > div.checkout-buttons')
-    .click();
+
+  get checkoutButtons() {
+    return cy.get('.totals > div.checkout-buttons');
+  }
+  checkOutButtonclick() {
+    this.checkoutButtons.click();
+    return this;
   }
 
-
-
-
-  
 
 }
 
