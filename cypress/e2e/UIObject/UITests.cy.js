@@ -46,7 +46,7 @@ describe('UI Check', () => {
 
     if (contactsPage.ifCapcha() || contactsPage.ifSuccessMessage()) {
       return;
-    }else false;
+    }else false; //todo : What you are checking here?
   });
 
   it('Check that allow to switch location list by region', () => {
@@ -57,7 +57,7 @@ describe('UI Check', () => {
       .should('have.attr', 'aria-selected', 'true')
       .should('contain', 'AMERICAS');
     homePage.locationList
-      .should('have.length', 3)
+      .should('have.length', 3)//todo: you don't need to check the length 3 times, just once
       .eq(1)
       .should('have.attr', 'aria-selected', 'false')
       .should('contain', 'EMEA')
@@ -80,7 +80,7 @@ describe('UI Check', () => {
   it('Check the ability to switch between mode', () => {
     homePage.header
       .should('have.css', 'color', 'rgb(35, 31, 32)');
-    homePage.clickSwitcher();
+    homePage.clickSwitcher(); //todo: this method could return this and you can continue chain
     homePage.header
       .should('have.css', 'color', 'rgb(0, 0, 0)');
   });
@@ -90,17 +90,28 @@ describe('UI Check', () => {
     homePage.policiesList
       .should('have.length', 6)
       .should('contain.text', 'INVESTORS', 'COOKIE POLICY', 'OPEN SOURCE', 'PRIVACY POLICY', 'APPLICANT PRIVACY NOTICE', 'WEB ACCESSIBILITY');
-  })
+  })//todo: look at logs while running - you are checking only Investors, but not whole list. You should use separate SHOULD for each item in the list .should("contain.text", "INVESTORS").and("contain.text", "COOKIE POLICY")...
 
   it('Check the search function', () => {
     homePage
       .clickSearchIcon()
       .typeInSearchField()
       .clicksfindButton();
-    for (let i = 0; i < homePage.searchResults.length; i++) {
+    for (let i = 0; i < homePage.searchResults.length; i++) { //todo: it is not working - no actions after clicking on find button
         cy.get(homePage.searchResults[i])
           .should('contain.text', 'AI');
     }
+
+    //todo: Here is an example of correct working of this test:
+    // homePage
+    //     .clickSearchIcon()
+    //     .typeInSearchField()
+    //     .clicksfindButton()
+    //     .searchResults.then(results => {
+    //   for (let i = 0; i < results.length; i++) {
+    //     cy.wrap(results[i]).should('contain.text', 'AI');
+    //   }
+    // });
   });
 
   it('Check that the Company logo on the header leads to the main page', () => {
