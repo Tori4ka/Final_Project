@@ -21,11 +21,11 @@ class HomePage {
 
 ///Check the policies list
 
-  clickpolicyInvestors() {
+  clickpolicyInvestors() { //todo: why you are keeping this method? you don't have "investors" locator for click
     this.investors.click();
   }
 
-  clickcookiesPolicy() {
+  clickcookiesPolicy() { //todo: why you are keeping this method? you don't have "cookiesPolicy" locator for click
     this.cookiesPolicy.click();
   }
 
@@ -60,7 +60,7 @@ class HomePage {
 
     typeInSearchField(text) {
       this.searchInput
-          .type('AI');
+          .type('AI'); //todo: you should put here text instead of "AI", and then in test type "AI" (typeInSearchField("AI"))
       return this;
     }
 
@@ -79,7 +79,7 @@ class HomePage {
     return cy.get('div.js-tabs-links-list a');
   }
 
-  clickPoliciesAcceptButton() {
+  clickPoliciesAcceptButton() { // todo: you are already have this locator and clicking on it on lines 36-42 here
     this.policiesAcceptButton.click();
   }
 
