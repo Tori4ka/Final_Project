@@ -5,7 +5,7 @@ class HomePage {
       return this;
     }
   
-    openCategoryPage() {
+    openCategoryPage() {//todo it is a locator of first category, you should or specify it or use list of categories and pick random number
       this.openHomePage();
       cy.get('.top-menu > li:nth-child(1) > a').click();
     }
@@ -21,7 +21,7 @@ class HomePage {
     }
 
     registerClick(){
-      cy.get('#register-button').click();
+      cy.get('#register-button').click(); //todo: you should create a separate locator and then use it in clicking method
     }
 
     firstItemTopMenuClick(){
@@ -34,7 +34,7 @@ class HomePage {
     }
 
 
-    checkOutLogin(){
+    checkOutLogin(){ // todo: don't keep unused methods - code principle "YAGNI"
       cy.get('body > div.master-wrapper-page > div.master-wrapper-content > div.header > div.header-links-wrapper > div.header-links > ul > li:nth-child(2) > a')
         .click();
     }
@@ -74,7 +74,7 @@ class HomePage {
       return cy.get('#products-pagesize');
     }
 
-    get selectPage(){
+    get selectPage(){ //todo: the wrong name of the method - it is productsList or itemsList
       return cy.get('.product-grid .item-box');
     }
 
@@ -87,13 +87,13 @@ class HomePage {
       this.confirmPasword.type(password);
       return this;  
     }
-    clickRegisterButton() {
+    clickRegisterButton() { // todo: what is this method? you are just using method inside method
       this.registerClick();
       return this;  
     }  
 
     verifyRegistrationSuccessMessage() {
-      this.resultRegister.should('contain', 'Your registration completed');
+      this.resultRegister.should('contain', 'Your registration completed'); //todo: all assertions must be keeping in spec files
     }
 
 
